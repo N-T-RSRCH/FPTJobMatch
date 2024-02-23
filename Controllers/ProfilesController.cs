@@ -12,10 +12,12 @@ namespace FPTJOB.Controllers
     public class ProfilesController : Controller
     {
         private readonly DBMyContext _context;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public ProfilesController(DBMyContext context)
+        public ProfilesController(DBMyContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: Profiles
@@ -49,15 +51,34 @@ namespace FPTJOB.Controllers
             return View();
         }
 
+        private string GetUniqueFileName(string fileName)
+        {
+            fileName = Path.GetFileName(fileName);
+            return Path.GetFileNameWithoutExtension(fileName)
+                   + "_"
+                   + Guid.NewGuid().ToString().Substring(0, 4)
+                   + Path.GetExtension(fileName);
+        }
+
         // POST: Profiles/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,UserId,FullName,Address,Skill,Education,MyFile")] Profile profile)
+        public async Task<IActionResult> Create([Bind("Id,UserId,FullName,Address,Skill,Education,MyFile,ImageFile")] Profile profile)
         {
+            ModelState.Remove("MyFile");
             if (ModelState.IsValid)
             {
+                string uniqueFileName = GetUniqueFileName(profile.ImageFile.FileName);
+                string filePath = Path.Combine(_webHostEnvironment.WebRootPath, "uploads", uniqueFileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await profile.ImageFile.CopyToAsync(fileStream);
+                }
+                profile.MyFile = uniqueFileName;
+
                 _context.Add(profile);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
