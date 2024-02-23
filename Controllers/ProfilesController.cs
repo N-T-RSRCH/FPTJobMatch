@@ -45,6 +45,7 @@ namespace FPTJOB.Controllers
         // GET: Profiles/Create
         public IActionResult Create()
         {
+            ViewBag.UserId = User.Identity.Name;
             return View();
         }
 
@@ -53,7 +54,7 @@ namespace FPTJOB.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Introduction,Title,Name,Birthday,Address,Contact,JobId")] Profile profile)
+        public async Task<IActionResult> Create([Bind("Id,UserId,FullName,Address,Skill,Education,MyFile")] Profile profile)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +86,7 @@ namespace FPTJOB.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Introduction,Title,Name,Birthday,Address,Contact,JobId")] Profile profile)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,FullName,Address,Skill,Education,MyFile")] Profile profile)
         {
             if (id != profile.Id)
             {

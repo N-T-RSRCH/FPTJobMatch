@@ -6,21 +6,15 @@ namespace FPTJOB.Models
 {
     public class Profile
     {
-        [Key]
-        public int Id { get; set; }
-        public string Introduction { get; set; }
-        public string Title { get; set; }
-        public string Name { get; set; }
-        public string Birthday { get; set; }
-        public string Address { get; set; }
-        public string Contact { get; set; }
+        public int Id { get; set; }       
+        public string UserId { get; set; }        
+        public string FullName { get; set; }       
+        public string Address { get; set; }        
+        public string Skill { get; set; }        
+        public string Education { get; set; }
+        public string MyFile { get; set; }
 
-
-        [ForeignKey("JobId")]
-        [DisplayName("Job")]
-
-        public int JobId { get; set; }
-
-        public virtual ICollection<Job>? Jobs { get; set; }
+        [NotMapped]
+        public IFormFile ImageFile { get; set; }
     }
 }

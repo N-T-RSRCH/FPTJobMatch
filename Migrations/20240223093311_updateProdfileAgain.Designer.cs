@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FPTJOB.Migrations
 {
     [DbContext(typeof(DBMyContext))]
-    [Migration("20240222125630_createProfile")]
-    partial class createProfile
+    [Migration("20240223093311_updateProdfileAgain")]
+    partial class updateProdfileAgain
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -76,9 +76,6 @@ namespace FPTJOB.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ProfileId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Requirement")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -86,8 +83,6 @@ namespace FPTJOB.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("ProfileId");
 
                     b.ToTable("Jobs");
                 });
@@ -104,26 +99,23 @@ namespace FPTJOB.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Birthday")
+                    b.Property<string>("Education")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Contact")
+                    b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Introduction")
+                    b.Property<string>("MyFile")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("JobId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
+                    b.Property<string>("Skill")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -342,10 +334,6 @@ namespace FPTJOB.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FPTJOB.Models.Profile", null)
-                        .WithMany("Jobs")
-                        .HasForeignKey("ProfileId");
-
                     b.Navigation("Category");
                 });
 
@@ -401,11 +389,6 @@ namespace FPTJOB.Migrations
                 });
 
             modelBuilder.Entity("FPTJOB.Models.Category", b =>
-                {
-                    b.Navigation("Jobs");
-                });
-
-            modelBuilder.Entity("FPTJOB.Models.Profile", b =>
                 {
                     b.Navigation("Jobs");
                 });
