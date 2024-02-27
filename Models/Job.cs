@@ -25,5 +25,7 @@ namespace FPTJOB.Models
         public int CategoryId { get; set; }
 
         public virtual Category? Category { get; set; }
+        [InverseProperty("Job")]
+        public virtual ICollection<ProJob>? ProJobs { get; set; }
     }
 }

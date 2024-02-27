@@ -16,5 +16,7 @@ namespace FPTJOB.Models
 
         [NotMapped]
         public IFormFile ImageFile { get; set; }
+        [InverseProperty("Profile")]
+        public virtual ICollection<ProJob>? ProJobs { get; set; }
     }
 }
