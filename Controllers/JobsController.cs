@@ -24,6 +24,11 @@ namespace FPTJOB.Controllers
             var dBMyContext = _context.Jobs.Include(j => j.Category);
             return View(await dBMyContext.ToListAsync());
         }
+        public async Task<IActionResult> ListJob()
+        {
+            var dBMyContext = _context.Jobs.Include(j => j.Category).Where(j=>j.Deadline >= DateTime.Now);
+            return View(await dBMyContext.ToListAsync());
+        }
 
         // GET: Jobs/Details/5
         public async Task<IActionResult> Details(int? id)

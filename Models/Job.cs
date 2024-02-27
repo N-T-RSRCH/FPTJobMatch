@@ -18,7 +18,7 @@ namespace FPTJOB.Models
 
         public string Requirement { get; set; }
 
-        public string Deadline { get; set; }
+        public DateTime Deadline { get; set; }
 
         [ForeignKey("CategoryId")]
         [DisplayName("Category")]

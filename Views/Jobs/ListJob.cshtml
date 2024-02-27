@@ -1,16 +1,16 @@
 ﻿@model IEnumerable<FPTJOB.Models.Job>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "ListJob";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>ListJob</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table id="example1" class="table table-bordered table-striped">
+<table class="table">
     <thead>
         <tr>
             <th>
@@ -59,7 +59,7 @@
                 @Html.DisplayFor(modelItem => item.Deadline)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Category.Name)
+                @Html.DisplayFor(modelItem => item.Category.Id)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
