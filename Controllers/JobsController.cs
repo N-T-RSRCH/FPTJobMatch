@@ -86,7 +86,7 @@ namespace FPTJOB.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", job.CategoryId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", job.CategoryId);
             return View(job);
         }
 
