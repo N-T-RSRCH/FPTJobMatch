@@ -133,6 +133,24 @@ namespace FPTJOB.Controllers
             return View(category);
         }
 
+        public async Task<IActionResult> Approved(int? id)
+        {
+            if (_context.Categories == null)
+            {
+                return Problem("Entity set 'DBMyContext.Categories' is null.");
+            }
+
+            var category = await _context.Categories.FindAsync(id);
+             
+            if (category != null)
+            {
+                category.Status = true;
+                _context.Categories.Update(category);
+            }
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
         // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
