@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FPTJOB.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FPTJOB.Controllers
 {
+    
     public class CategoriesController : Controller
     {
         private readonly DBMyContext _context;
@@ -43,6 +45,7 @@ namespace FPTJOB.Controllers
         }
 
         // GET: Categories/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
