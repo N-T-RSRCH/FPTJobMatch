@@ -118,6 +118,15 @@ namespace FPTJOB.Controllers
             {
                 try
                 {
+                    string uniqueFileName = GetUniqueFileName(profile.ImageFile.FileName);
+                    string filePath = Path.Combine(_webHostEnvironment.WebRootPath, "uploads", uniqueFileName);
+
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await profile.ImageFile.CopyToAsync(fileStream);
+                    }
+                    profile.MyFile = uniqueFileName;
+
                     _context.Update(profile);
                     await _context.SaveChangesAsync();
                 }
