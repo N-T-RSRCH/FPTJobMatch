@@ -107,26 +107,29 @@ namespace FPTJOB.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,FullName,Address,Skill,Education,MyFile")] Profile profile)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,FullName,Address,Skill,Education,MyFile, ImageFile")] Profile profile)
         {
             if (id != profile.Id)
             {
                 return NotFound();
             }
-
+            ModelState.Remove("MyFile");
+            ModelState.Remove("ImageFile");
             if (ModelState.IsValid)
             {
                 try
                 {
-                    string uniqueFileName = GetUniqueFileName(profile.ImageFile.FileName);
-                    string filePath = Path.Combine(_webHostEnvironment.WebRootPath, "uploads", uniqueFileName);
-
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    if (profile.ImageFile != null)
                     {
-                        await profile.ImageFile.CopyToAsync(fileStream);
-                    }
-                    profile.MyFile = uniqueFileName;
+                        string uniqueFileName = GetUniqueFileName(profile.ImageFile.FileName);
+                        string filePath = Path.Combine(_webHostEnvironment.WebRootPath, "uploads", uniqueFileName);
 
+                        using (var fileStream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await profile.ImageFile.CopyToAsync(fileStream);
+                        }
+                        profile.MyFile = uniqueFileName;
+                    }
                     _context.Update(profile);
                     await _context.SaveChangesAsync();
                 }
