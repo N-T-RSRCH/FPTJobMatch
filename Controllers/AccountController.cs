@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,7 +20,8 @@ namespace FPTJOB.Controllers
             return View();
         }
 
-        [HttpGet]
+		[Authorize(Roles = "Admin")]
+		[HttpGet]
         public async Task<IActionResult> SetRole()
         {
             var users = await _userManager.Users.Select(u => u.UserName).ToListAsync();

@@ -67,8 +67,9 @@ namespace FPTJOB.Controllers
             return View(category);
         }
 
-        // GET: Categories/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+		// GET: Categories/Edit/5
+		[Authorize(Roles = "Admin")]
+		public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -118,8 +119,9 @@ namespace FPTJOB.Controllers
             return View(category);
         }
 
-        // GET: Categories/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+		// GET: Categories/Delete/5
+		[Authorize(Roles = "Admin")]
+		public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {

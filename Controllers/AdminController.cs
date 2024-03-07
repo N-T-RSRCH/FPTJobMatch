@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FPTJOB.Controllers
@@ -12,7 +13,8 @@ namespace FPTJOB.Controllers
             _roleManager = roleManager;
         }
 
-        public IActionResult CreateRole()
+		[Authorize(Roles = "Admin")]
+		public IActionResult CreateRole()
         {
             return View();
         }
