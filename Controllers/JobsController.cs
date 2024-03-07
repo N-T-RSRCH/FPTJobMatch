@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FPTJOB.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FPTJOB.Controllers
 {
@@ -62,8 +63,9 @@ namespace FPTJOB.Controllers
             return View(job);
         }
 
-        // GET: Jobs/Create
-        public IActionResult Create()
+		// GET: Jobs/Create
+		[Authorize(Roles = "Employer")]
+		public IActionResult Create()
         {
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
             return View();
@@ -86,8 +88,9 @@ namespace FPTJOB.Controllers
             return View(job);
         }
 
-        // GET: Jobs/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+		// GET: Jobs/Edit/5
+		[Authorize(Roles = "Employer")]
+		public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -139,8 +142,9 @@ namespace FPTJOB.Controllers
             return View(job);
         }
 
-        // GET: Jobs/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+		// GET: Jobs/Delete/5
+		[Authorize(Roles = "Employer")]
+		public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
