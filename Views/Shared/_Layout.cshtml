@@ -77,11 +77,11 @@
             @if (SignInManager.IsSignedIn(User))
             {
                 <li class="nav-item">
-                    <a href="Identity/Account/Logout">
-                        <button type="submit" class="btn btn-secondary">
+                    <button type="submit" class="btn btn-secondary">
+                        <a href="Identity/Account/Logout">
                             Logout @User?.Identity?.Name
-                        </button>
-                    </a>
+                        </a>
+                    </button>
                 </li>
             }
             else
@@ -487,7 +487,7 @@
     <!-- Control sidebar content goes here -->
   </aside>
   <!-- /.control-sidebar -->
-</div>
+
 <!-- ./wrapper -->
 
 <!-- jQuery -->

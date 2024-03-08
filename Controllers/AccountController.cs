@@ -49,6 +49,7 @@ namespace FPTJOB.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UserList()
         {
             var users = await _userManager.Users.ToListAsync();
