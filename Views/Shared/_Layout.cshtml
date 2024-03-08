@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -66,7 +69,33 @@
     <div class="sidebar">
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <ul class="navbar-nav ml-auto">
+            @*If the user is signed-in display Logout link*@
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <li class="nav-item">
+                    <a href="Identity/Account/Logout">
+                        <button type="submit" class="btn btn-secondary">
+                            Logout @User?.Identity?.Name
+                        </button>
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="Identity/Account/Register">
+                        Register
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Identity/Account/Login">
+                        Login
+                    </a>
+                </li>
+            }
+        </ul>
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
