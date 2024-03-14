@@ -8,6 +8,7 @@ namespace FPTJOB.Controllers
 {
     public class AccountController : Controller
     {
+        // Hoang
         private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
