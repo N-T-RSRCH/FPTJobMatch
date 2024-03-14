@@ -256,7 +256,7 @@ namespace FPTJOB.Migrations
                 table: "Jobs",
                 column: "CategoryId");
         }
-
+        // Hoang
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {

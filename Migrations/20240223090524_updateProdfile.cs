@@ -18,7 +18,7 @@ namespace FPTJOB.Migrations
                 oldClrType: typeof(int),
                 oldType: "int");
         }
-
+        // Hoang
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {

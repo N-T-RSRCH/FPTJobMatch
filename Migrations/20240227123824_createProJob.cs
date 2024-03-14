@@ -48,7 +48,7 @@ namespace FPTJOB.Migrations
                 table: "ProJob",
                 column: "ProfileId");
         }
-
+        // Hoang
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
