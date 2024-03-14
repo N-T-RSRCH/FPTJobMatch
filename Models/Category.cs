@@ -5,6 +5,7 @@ namespace FPTJOB.Models
 {
     public class Category
     {
+        // Hoang
         [Key]
         public int Id { get; set; }
 
