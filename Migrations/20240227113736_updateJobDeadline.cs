@@ -19,7 +19,7 @@ namespace FPTJOB.Migrations
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)");
         }
-
+        // Hoang
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {

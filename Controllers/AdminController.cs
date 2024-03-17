@@ -6,6 +6,7 @@ namespace FPTJOB.Controllers
 {
     public class AdminController : Controller
     {
+        // Hoang
         private readonly RoleManager<IdentityRole> _roleManager;
 
         public AdminController(RoleManager<IdentityRole> roleManager)

@@ -17,7 +17,7 @@ namespace FPTJOB.Migrations
                 nullable: false,
                 defaultValue: "");
         }
-
+        // Hoang
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
