@@ -63,17 +63,13 @@ namespace FPTJOB.Controllers
             return View(job);
         }
 
-		// GET: Jobs/Create
-		[Authorize(Roles = "Employer")]
-		public IActionResult Create()
+        // GET: Jobs/Create
+        [Authorize(Roles = "Employer")]
+        public IActionResult Create()
         {
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
             return View();
         }
-        // Hoang
-        // POST: Jobs/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Industry,Location,Description,Requirement,Deadline,CategoryId")] Job job)
@@ -88,9 +84,9 @@ namespace FPTJOB.Controllers
             return View(job);
         }
 
-		// GET: Jobs/Edit/5
-		[Authorize(Roles = "Employer")]
-		public async Task<IActionResult> Edit(int? id)
+        // GET: Jobs/Edit/5
+        [Authorize(Roles = "Employer")]
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -106,9 +102,6 @@ namespace FPTJOB.Controllers
             return View(job);
         }
 
-        // POST: Jobs/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Industry,Location,Description,Requirement,Deadline,CategoryId")] Job job)
@@ -142,9 +135,9 @@ namespace FPTJOB.Controllers
             return View(job);
         }
 
-		// GET: Jobs/Delete/5
-		[Authorize(Roles = "Employer")]
-		public async Task<IActionResult> Delete(int? id)
+        // GET: Jobs/Delete/5
+        [Authorize(Roles = "Employer")]
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {

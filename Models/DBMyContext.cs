@@ -11,6 +11,7 @@ namespace FPTJOB.Models
 
         }
 
+
         public DbSet<Category> Categories { get; set; }
         public DbSet<Job> Jobs { get; set; }
         public DbSet<FPTJOB.Models.Profile> Profile { get; set; } = default!;

@@ -18,14 +18,13 @@ namespace FPTJOB.Controllers
             _context = context;
         }
 
-        // GET: ProJobs
         public async Task<IActionResult> Index(int id)
         {
             var dBMyContext = _context.ProJob.Include(p => p.Job).Include(p => p.Profile).Where(p=>p.JobId == id);
             return View(await dBMyContext.ToListAsync());
         }
 
-        // GET: ProJobs/Details/5
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -45,7 +44,7 @@ namespace FPTJOB.Controllers
             return View(proJob);
         }
 
-        // GET: ProJobs/Create
+
         public IActionResult Create(int id)
         {
             ProJob pj = new ProJob();
@@ -57,10 +56,7 @@ namespace FPTJOB.Controllers
 
             return RedirectToAction("ListJob", "Jobs");
         }
-        // Hoang
-        // POST: ProJobs/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,RegDate,JobId,ProfileId")] ProJob proJob)
@@ -94,9 +90,6 @@ namespace FPTJOB.Controllers
             return View(proJob);
         }
 
-        // POST: ProJobs/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,RegDate,JobId,ProfileId")] ProJob proJob)

@@ -26,7 +26,6 @@ namespace FPTJOB.Controllers
             return View(await _context.Profile.ToListAsync());
         }
 
-        // GET: Profiles/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,7 +43,6 @@ namespace FPTJOB.Controllers
             return View(profile);
         }
 
-        // GET: Profiles/Create
         public IActionResult Create()
         {
             ViewBag.UserId = User.Identity.Name;
@@ -59,11 +57,6 @@ namespace FPTJOB.Controllers
                    + Guid.NewGuid().ToString().Substring(0, 4)
                    + Path.GetExtension(fileName);
         }
-
-        // Hoang
-        // POST: Profiles/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,UserId,FullName,Address,Skill,Education,MyFile,ImageFile")] Profile profile)
@@ -87,7 +80,6 @@ namespace FPTJOB.Controllers
             return View(profile);
         }
 
-        // GET: Profiles/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -103,9 +95,6 @@ namespace FPTJOB.Controllers
             return View(profile);
         }
 
-        // POST: Profiles/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,FullName,Address,Skill,Education,MyFile, ImageFile")] Profile profile)
@@ -133,6 +122,7 @@ namespace FPTJOB.Controllers
                     }
                     _context.Update(profile);
                     await _context.SaveChangesAsync();
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -150,7 +140,6 @@ namespace FPTJOB.Controllers
             return View(profile);
         }
 
-        // GET: Profiles/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -168,7 +157,7 @@ namespace FPTJOB.Controllers
             return View(profile);
         }
 
-        // POST: Profiles/Delete/5
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

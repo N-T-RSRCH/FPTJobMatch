@@ -8,6 +8,7 @@ namespace FPTJOB.Models
         [Key]
         public int Id { get; set; }
         public DateTime RegDate { get; set; }
+
         public int JobId { get; set; }
         [ForeignKey("JobId")]
         public virtual Job? Job { get; set; }

@@ -6,7 +6,6 @@ namespace FPTJOB.Controllers
 {
     public class AdminController : Controller
     {
-        // Hoang
         private readonly RoleManager<IdentityRole> _roleManager;
 
         public AdminController(RoleManager<IdentityRole> roleManager)
@@ -14,8 +13,8 @@ namespace FPTJOB.Controllers
             _roleManager = roleManager;
         }
 
-		[Authorize(Roles = "Admin")]
-		public IActionResult CreateRole()
+        [Authorize(Roles = "Admin")]
+        public IActionResult CreateRole()
         {
             return View();
         }
@@ -48,7 +47,5 @@ namespace FPTJOB.Controllers
 
             return View();
         }
-
-
     }
 }

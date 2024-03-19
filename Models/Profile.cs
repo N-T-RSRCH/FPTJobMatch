@@ -6,7 +6,6 @@ namespace FPTJOB.Models
 {
     public class Profile
     {
-        // Hoang
         public int Id { get; set; }       
         public string UserId { get; set; }        
         public string FullName { get; set; }       

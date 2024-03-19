@@ -8,7 +8,6 @@ namespace FPTJOB.Controllers
 {
     public class AccountController : Controller
     {
-        // Hoang
         private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
@@ -22,8 +21,8 @@ namespace FPTJOB.Controllers
             return View();
         }
 
-		[Authorize(Roles = "Admin")]
-		[HttpGet]
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
         public async Task<IActionResult> SetRole()
         {
             var users = await _userManager.Users.Select(u => u.UserName).ToListAsync();
